@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -14,32 +15,36 @@ import Player from './app/screens/Player';
 import { Provider } from 'react-redux';
 import store from './app/store/index';
 import PlaylistComponent from './app/components/PlaylistComponent';
-
+var AppIcon = require('./image/AppIcon.png');
 const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={({ route, navigation }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-
           if (route.name === 'Trang chủ') {
             iconName = 'home';
-            color = focused? 'black' : 'gray';
+            color = focused? '#1da1f2' : 'gray';
             size = 30;
+          } else if (route.name === ' ') {
+            navigation.tabBarVisible = false;
+            return <Image source={AppIcon} style={{ width: 40, height: 40, marginTop: 15 }} />
           } else if (route.name === 'Cá nhân') {
             iconName = 'person';
-            color = focused? 'black' : 'gray';
+            color = focused? '#1da1f2' : 'gray';
             size = 30;
           }
-          return <Icon name={iconName} size={size} color={color} />;
+          return <Icon name={iconName} size={size} color={color} />
         },
       })}
     > 
-      <Tab.Screen name="Trang chủ" component={Home}/>
+      <Tab.Screen name="Trang chủ" component={Home} />
+      <Tab.Screen  name =" "component={Player} options={() => ({
+        tabBarVisible: false
+      })} />
       <Tab.Screen name="Cá nhân" component={Personal} />
-      {/* <Tab.Screen name="ASDSAD" component={Player} /> */}
     </Tab.Navigator>
   );
 }
