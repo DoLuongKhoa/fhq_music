@@ -15,7 +15,13 @@ import Player from './app/screens/Player';
 import { Provider } from 'react-redux';
 import store from './app/store/index';
 import PlaylistComponent from './app/components/PlaylistComponent';
+<<<<<<< HEAD
 var AppIcon = require('./image/AppIcon.png');
+=======
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+var AppIcon = require('./app/icons/AppIcon.png');
+
+>>>>>>> 3439d03c06a6d62756089746d59a343a06ed8673
 const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
@@ -54,6 +60,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <Provider store={store}>
+    {/* <Provider> */}
       <MenuProvider>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -78,3 +85,7 @@ function App() {
 }
 
 export default App;
+
+
+
+
